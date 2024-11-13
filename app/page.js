@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -17,8 +18,9 @@ export default function Home() {
           <li>
             Elam is editing <code>app/page.js</code>.
           </li>
-          <li>117</li>
+          <li>version 2</li>
         </ol>
+        <Link href="/test" className="xp">Go to Test Page</Link>
 
         <div className={styles.ctas}>
           <a

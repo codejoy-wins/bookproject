@@ -40,3 +40,14 @@ a {
     color-scheme: dark;
   }
 }
+
+.xp {
+  color: rgb(216, 94, 216);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+
+.xp:hover {
+  color: rgb(0, 149, 255);
+}
