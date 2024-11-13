@@ -15,9 +15,9 @@ export default function Home() {
         />
         <ol>
           <li>
-            Get started by editing <code>app/page.js</code>.
+            Elam is editing <code>app/page.js</code>.
           </li>
-          <li>Save and see your changes instantly.</li>
+          <li>117</li>
         </ol>
 
         <div className={styles.ctas}>
