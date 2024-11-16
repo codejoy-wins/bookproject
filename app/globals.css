@@ -170,9 +170,9 @@ form {
       opacity: 1;
   }
 }
-/* img:hover {
-  transform: scale(1.6);
-} */
+img:hover {
+  transform: scale(1.1);
+}
 .booky{
   margin: 5px;
   padding: 15px;

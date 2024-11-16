@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function BookerPage() {
     const [formVisible, setFormVisible] = useState(false); // State to toggle form visibility
@@ -188,7 +189,7 @@ export default function BookerPage() {
             {/* Books List */}
             <h2 style={{ marginTop: '30px' }}>Books Collection</h2>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
-                {books.map((book) => (
+                {books.slice().reverse().map((book) => (
                     <li
                         key={book._id}
                         style={{
@@ -204,6 +205,9 @@ export default function BookerPage() {
                     </li>
                 ))}
             </ul>
+            <div>
+            <Link href="/formal" className="xp">Go to Home Page</Link>
+            </div>
         </main>
     );
 }
