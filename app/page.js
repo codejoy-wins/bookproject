@@ -14,13 +14,23 @@ export default function Home() {
           height={38}
           priority
         />
-        <ol>
-          <li>
-            Elam is editing <code>app/page.js</code>.
-          </li>
-          <li>version 2</li>
-        </ol>
-        <Link href="/test" className="xp">Go to Test Page</Link>
+        
+        <Link href="/formal" className="xp">Go to Form Page</Link>
+        <img className="pic" src="/images/booker.webp" alt="booker"/>
+
+        <div>
+          <p>Coded by Elam</p>
+        </div>
+        {/* <div style={{ maxWidth: '520px', margin: '0 auto' }}>
+            <Image
+                src="/images/booker.webp" // Path to your image in the public folder
+                alt="Booker the Anthropomorphized Book"
+                width={500} // Native width of the image
+                height={500} // Native height of the image (adjust as per actual dimensions)
+                style={{ maxWidth: '100%', height: 'auto' }}
+            />
+        </div> */}
+
 
         <div className={styles.ctas}>
           <a
