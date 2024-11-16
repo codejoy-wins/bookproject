@@ -206,7 +206,7 @@ export default function BookerPage() {
                 ))}
             </ul>
             <div>
-            <Link href="/formal" className="xp">Go to Home Page</Link>
+            <Link href="/" className="xp">Go to Home Page</Link>
             </div>
         </main>
     );
