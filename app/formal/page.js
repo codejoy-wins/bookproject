@@ -1,4 +1,4 @@
-'use client';
+'use client'; // Required for client-side interactivity in Next.js
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ export default function BookerPage() {
         rating: '',
     });
     const [message, setMessage] = useState('');
-    const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([]); // State to store the list of books
 
     // Fetch books from the API
     const fetchBooks = async () => {
@@ -29,10 +29,12 @@ export default function BookerPage() {
         fetchBooks();
     }, []);
 
+    // Toggle form visibility when Booker is clicked
     const handleClickBooker = () => {
-        setFormVisible((prev) => !prev); // Toggle form visibility
+        setFormVisible((prev) => !prev);
     };
 
+    // Handle form input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -41,6 +43,7 @@ export default function BookerPage() {
         }));
     };
 
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -54,7 +57,7 @@ export default function BookerPage() {
             const data = await response.json();
             if (response.ok) {
                 setMessage('Book added successfully!');
-                setFormData({ title: '', author: '', review: '', rating: '' });
+                setFormData({ title: '', author: '', review: '', rating: '' }); // Clear form fields
                 fetchBooks(); // Refresh the book list
             } else {
                 setMessage(`Error: ${data.message}`);
@@ -65,17 +68,43 @@ export default function BookerPage() {
     };
 
     return (
-        <main>
-            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+        <main
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+                position: 'relative',
+            }}
+        >
+            <div
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: formVisible ? 'flex-start' : 'center',
+                    width: '100%',
+                    maxWidth: '1200px',
+                    transition: 'justify-content 0.5s ease',
+                }}
+            >
                 {/* Booker Image */}
-                <div onClick={handleClickBooker} style={{ cursor: 'pointer', marginRight: '20px' }}>
+                <div className="booky"
+                    onClick={handleClickBooker}
+                    style={{
+                        cursor: 'pointer',
+                        transition: 'transform 0.5s ease',
+                        transform: formVisible ? 'translateX(0)' : 'scale(1.5)',
+                        marginRight: formVisible ? '20px' : '0',
+                    }}
+                >
                     <Image
-                        src="/images/booker.webp"
+                        src="/images/booker2.webp"
                         alt="Booker the Anthropomorphized Book"
                         width={150}
                         height={200}
                     />
-                    <p style={{ textAlign: 'center' }}>Click me!</p>
+                    <p style={{ textAlign: 'center', fontSize: '18px' }}></p>
                 </div>
 
                 {/* Form (Visible only when clicked) */}
@@ -88,6 +117,7 @@ export default function BookerPage() {
                             borderRadius: '8px',
                             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                             maxWidth: '400px',
+                            marginLeft: '20px',
                         }}
                     >
                         <div>

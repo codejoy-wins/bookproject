@@ -153,3 +153,27 @@ h2 {
   padding: 1vw;
   border-radius: 2px;
 }
+img {
+  transition: transform 0.5s ease, margin-right 0.5s ease;
+}
+
+form {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+/* img:hover {
+  transform: scale(1.6);
+} */
+.booky{
+  margin: 5px;
+  padding: 15px;
+}
