@@ -74,19 +74,23 @@ export default function BookerPage() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'flex-start',
                 height: '100vh',
-                position: 'relative',
+                padding: '20px',
+                boxSizing: 'border-box',
+                // border: '1px solid red', // Debug border
             }}
         >
             <div
                 style={{
                     display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: formVisible ? 'flex-start' : 'center',
+                    alignItems: 'flex-start',
+                    justifyContent:'center',
                     width: '100%',
                     maxWidth: '1200px',
-                    transition: 'justify-content 0.5s ease',
+                    // border: '1px solid green', // Debug border
+                    marginBottom:'20px',
+                    gap:'20px',
                 }}
             >
                 {/* Booker Image */}
@@ -97,6 +101,7 @@ export default function BookerPage() {
                         transition: 'transform 0.5s ease',
                         transform: formVisible ? 'translateX(0)' : 'scale(1.5)',
                         marginRight: formVisible ? '20px' : '0',
+                        width:'150px'
                     }}
                 >
                     <Image
@@ -105,7 +110,7 @@ export default function BookerPage() {
                         width={150}
                         height={200}
                     />
-                    <p style={{ textAlign: 'center', fontSize: '18px' }}></p>
+                    {!formVisible && <p style={{ textAlign: 'center', fontSize: '18px' }}>Click Me!</p>}
                 </div>
 
                 {/* Form (Visible only when clicked) */}
@@ -119,6 +124,9 @@ export default function BookerPage() {
                             boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                             maxWidth: '400px',
                             marginLeft: '20px',
+                            color: 'navy',
+                            width:'100%'
+
                         }}
                     >
                         <div>
@@ -187,7 +195,7 @@ export default function BookerPage() {
             </div>
 
             {/* Books List */}
-            <h2 style={{ marginTop: '30px' }}>Books Collection</h2>
+            <h2 style={{ marginTop: '30px' }}>Booker</h2>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {books.slice().reverse().map((book) => (
                     <li

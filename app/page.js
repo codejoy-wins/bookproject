@@ -15,11 +15,11 @@ export default function Home() {
           priority
         />
         
-        <Link href="/formal" className="xp">Go to Form Page</Link>
+        <Link href="/formal" className="xp">Add a Book Review!</Link>
         <img className="pic" src="/images/booker.webp" alt="booker"/>
 
         <div>
-          <p>Coded by Elam</p>
+          <p>&copy; Jann Software</p>
         </div>
         {/* <div style={{ maxWidth: '520px', margin: '0 auto' }}>
             <Image
@@ -35,7 +35,7 @@ export default function Home() {
         <div className={styles.ctas}>
           <a
             className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://maxjann.com"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -46,15 +46,15 @@ export default function Home() {
               width={20}
               height={20}
             />
-            Deploy now
+            maxjann.com
           </a>
           <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondary}
           >
-            Read our docs
+            How I did it
           </a>
         </div>
       </main>
