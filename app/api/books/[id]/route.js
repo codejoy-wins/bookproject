@@ -36,7 +36,7 @@ export async function PUT(req, context) {
         }
 
         // Check if the book is editable by this user
-        if (book.createdBy === userId) {
+        if (book.createdBy === userId || book.createdBy === null) {
             // Parse the request body for updated data
             const updatedData = await req.json();
 
@@ -101,7 +101,7 @@ export async function DELETE(req, context) {
         }
 
         // Check if the `createdBy` matches the user's ID
-        if (book.createdBy !== userId) {
+        if (book.createdBy !== userId && book.createdBy !== null) {
             console.log('Unauthorized delete attempt');
             return new Response(JSON.stringify({ success: false, message: 'Unauthorized' }), {
                 status: 403,
