@@ -1,4 +1,4 @@
-'use client';
+'use client'; // Required for client-side interactivity in Next.js
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -6,8 +6,16 @@ import Link from 'next/link';
 import BookCard from '@/components/BookCard';
 import useUserId from '../../hooks/useUserId';
 
+
+// Function to generate a unique ID
+function generateUserId() {
+    return 'user_' + Math.random().toString(36).substring(2, 15) + Date.now();
+}
+
 export default function BookerPage() {
     const userId = useUserId(); // Get the user ID
+    console.log('User ID in BookerPage:', userId); // Debugging output
+    if (!userId) return <div>Loading...</div>; // Show a loading state until userId is available
     const [formVisible, setFormVisible] = useState(false); // State to toggle form visibility
     const [formData, setFormData] = useState({
         title: '',
@@ -48,44 +56,52 @@ export default function BookerPage() {
     };
 
     // Handle form submission
-    const [editingBookId, setEditingBookId] = useState(null);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(editingBookId){
-            await handleEdit(editingBookId, formData);
-            setEditingBookId(null);
-            setFormData({ title: '', author: '', review: '', rating: '' }); // Reset the form
-            setFormVisible(false);
-        } else{
-
-        
-            try {
-                const response = await fetch('/api/books', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'user-id': userId, // Include the user ID
-                    },
-                    body: JSON.stringify(formData),
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    setMessage('Book added successfully!');
-                    setFormData({ title: '', author: '', review: '', rating: '' }); // Clear form fields
-                    fetchBooks(); // Refresh the book list
-                    setFormVisible(false);
-                } else {
-                    setMessage(`Error: ${data.message}`);
-                }
-            } catch (error) {
-                setMessage(`Error: ${error.message}`);
+        const userId = localStorage.getItem('userId'); // Retrieve the user ID
+        try {
+            const response = await fetch('/api/books', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'user-id': userId, // Include the user ID
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setMessage('Book added successfully!');
+                setFormData({ title: '', author: '', review: '', rating: '' }); // Clear form fields
+                fetchBooks(); // Refresh the book list
+            } else {
+                setMessage(`Error: ${data.message}`);
             }
+        } catch (error) {
+            setMessage(`Error: ${error.message}`);
         }
     };
+        
+    
+    // Handle Delete Old
+    // const handleDelete = async (id) => {
+    //     const userId = localStorage.getItem('userId'); // Retrieve the user ID
+    //     try {
+    //         const response = await fetch(`/api/books/${id}`, { method: 'DELETE' });
+    //         if (response.ok) {
+    //             setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
+    //         } else {
+    //             console.error('Failed to delete the book again');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
 
-    // Handle delete
+    // deleter new
+
     const handleDelete = async (id) => {
+        const userId = localStorage.getItem('userId'); // Retrieve the user ID
+    
         try {
             const response = await fetch(`/api/books/${id}`, {
                 method: 'DELETE',
@@ -94,13 +110,11 @@ export default function BookerPage() {
                     'user-id': userId, // Include the user ID
                 },
             });
-
+    
             const result = await response.json();
             if (response.ok) {
                 console.log('Book deleted:', result.message);
                 setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
-            } else if (response.status === 403) {
-                alert('You are not authorized to delete this book.');
             } else {
                 console.error('Error deleting book:', result.message);
             }
@@ -109,16 +123,14 @@ export default function BookerPage() {
         }
     };
 
-    // Handle edit
+    // Handle Edit
+
     const handleEdit = async (id, updatedData) => {
-        // const userID = localStorage.getItem('userId'); // might be able to comment this out, since I have a hook for it.
+        const userId = localStorage.getItem('userId'); // Retrieve the user ID
         try {
             const response = await fetch(`/api/books/${id}`, {
                 method: 'PUT',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'user-id': userId,
-                 },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedData),
             });
             if (response.ok) {
@@ -126,8 +138,6 @@ export default function BookerPage() {
                 setBooks((prevBooks) =>
                     prevBooks.map((book) => (book._id === id ? updatedBook.data : book))
                 );
-            } else if (response.status === 403) {
-                alert('You are not authorized to edit this book.');
             } else {
                 console.error('Failed to update the book');
             }
@@ -135,7 +145,7 @@ export default function BookerPage() {
             console.error('Error:', error);
         }
     };
-
+    
     return (
         <main
             style={{
@@ -146,29 +156,30 @@ export default function BookerPage() {
                 height: '100vh',
                 padding: '20px',
                 boxSizing: 'border-box',
+                // border: '1px solid red', // Debug border
             }}
         >
             <div
                 style={{
                     display: 'flex',
                     alignItems: 'flex-start',
-                    justifyContent: 'center',
+                    justifyContent:'center',
                     width: '100%',
                     maxWidth: '1200px',
-                    marginBottom: '20px',
-                    gap: '20px',
+                    // border: '1px solid green', // Debug border
+                    marginBottom:'20px',
+                    gap:'20px',
                 }}
             >
                 {/* Booker Image */}
-                <div
-                    className="booky"
+                <div className="booky"
                     onClick={handleClickBooker}
                     style={{
                         cursor: 'pointer',
                         transition: 'transform 0.5s ease',
                         transform: formVisible ? 'translateX(0)' : 'scale(1.5)',
                         marginRight: formVisible ? '20px' : '0',
-                        width: '150px',
+                        width:'150px'
                     }}
                 >
                     <Image
@@ -180,7 +191,7 @@ export default function BookerPage() {
                     {!formVisible && <p style={{ textAlign: 'center', fontSize: '18px' }}>Click Me!</p>}
                 </div>
 
-                {/* Form */}
+                {/* Form (Visible only when clicked) */}
                 {formVisible && (
                     <form
                         onSubmit={handleSubmit}
@@ -192,7 +203,8 @@ export default function BookerPage() {
                             maxWidth: '400px',
                             marginLeft: '20px',
                             color: 'navy',
-                            width: '100%',
+                            width:'100%'
+
                         }}
                     >
                         <div>
@@ -264,21 +276,17 @@ export default function BookerPage() {
             <h2 style={{ marginTop: '30px' }}>Booker</h2>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {books.slice().reverse().map((book) => (
+                    
                     <BookCard
                         key={book._id}
                         book={book}
                         onDelete={handleDelete}
-                        // onEdit={handleEdit}
-                        setFormVisible={setFormVisible} // Passed down from the parent
-                        setFormData={setFormData} // Passed down from the parent
-                        setEditingBookId={setEditingBookId} // Passed down from the parent
+                        onEdit={handleEdit}
                     />
                 ))}
             </ul>
             <div>
-                <Link href="/" className="xp">
-                    Go to Home Page
-                </Link>
+            <Link href="/" className="xp">Go to Home Page</Link>
             </div>
         </main>
     );

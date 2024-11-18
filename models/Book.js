@@ -25,7 +25,12 @@ const BookSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    createdBy: {
+        type: String,
+        required: true,
+        default: null,
+    },
 });
 
 // Export the model if it exists, or create it if it doesn’t
