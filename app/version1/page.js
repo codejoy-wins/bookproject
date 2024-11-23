@@ -1,85 +1,66 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 
 export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        {/* <Image
+        <Image
           className={styles.logo}
-          src="14.svg"
-          alt="My logo"
-          // width={360}
-          // height={72}
-          width={720}
-          height={144}
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
           priority
-        /> */}
+        />
         
-        {/* <Link href="/formal" className="xp">Old Book Review App</Link> */}
-
-        {/* <div className="peace">
-        <Link href="/showcase" className="xp">Review and Me</Link>
-        </div>
-
-        <img className="pic" src="/images/17.jpg" alt="booker"/> */}
+        <Link href="/formal" className="xp">Add a Book Review!</Link>
+        <img className="pic" src="/images/booker.webp" alt="booker"/>
 
         <div>
           <p>&copy; Jann Software</p>
         </div>
-        <div style={{ maxWidth: '520px', margin: '0 auto' }}>
+        {/* <div style={{ maxWidth: '520px', margin: '0 auto' }}>
             <Image
-                src="/images/1.webp" // Path to your image in the public folder
-                alt="Booker"
+                src="/images/booker.webp" // Path to your image in the public folder
+                alt="Booker the Anthropomorphized Book"
                 width={500} // Native width of the image
                 height={500} // Native height of the image (adjust as per actual dimensions)
                 style={{ maxWidth: '100%', height: 'auto' }}
             />
-        </div>
+        </div> */}
 
 
         <div className={styles.ctas}>
           <a
             className={styles.primary}
-            href="https://maxjann.com/projects"
+            href="https://maxjann.com"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
               className={styles.logo}
-              src="/70.svg"
-              alt="Delta Halo TM"
+              src="/vercel.svg"
+              alt="Vercel logomark"
               width={20}
               height={20}
             />
-            projects
+            maxjann.com
           </a>
           <a
-            href="https://maxjann.com/"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondary}
           >
-            <Image
-              className={styles.logo}
-              src="/70.svg"
-              alt="Delta Halo TM"
-              width={20}
-              height={20}
-            />
-            &nbsp; maxjann.com
+            How I did it
           </a>
         </div>
-        <div className="peace">
-        <Link href="/showcase" className="xp">Review and Me</Link>
-        </div>
-
-        <img className="pic" src="/images/17.jpg" alt="booker"/>
       </main>
       <footer className={styles.footer}>
         <a
-          href="https://maxjann.com/resume"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -90,10 +71,10 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Resume
+          Learn
         </a>
         <a
-          href="https://maxjann.com/mewthree"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -104,10 +85,10 @@ export default function Home() {
             width={16}
             height={16}
           />
-          My AI Mewthree App
+          Examples
         </a>
         <a
-          href="https://https://github.com/codejoy-wins"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -118,7 +99,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to my github →
+          Go to nextjs.org →
         </a>
       </footer>
     </div>

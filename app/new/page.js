@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BookCard from '@/components/BookCard';
 import useUserId from '../../hooks/useUserId';
+import AtriusShowcase from '@/components/AtriusShowcase';
 
 export default function BookerPage() {
     const userId = useUserId(); // Get the user ID
@@ -159,6 +160,7 @@ export default function BookerPage() {
                     gap: '20px',
                 }}
             >
+                
                 {/* Booker Image */}
                 <div
                     className="booky"
@@ -172,7 +174,7 @@ export default function BookerPage() {
                     }}
                 >
                     <Image
-                        src="/images/booker.webp"
+                        src="/images/aurius.webp"
                         alt="Booker the Anthropomorphized Book"
                         width={150}
                         height={200}
@@ -261,7 +263,7 @@ export default function BookerPage() {
             </div>
 
             {/* Books List */}
-            <h2 style={{ marginTop: '30px' }}>Booker</h2>
+
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {books.slice().reverse().map((book) => (
                     <BookCard
@@ -275,6 +277,11 @@ export default function BookerPage() {
                     />
                 ))}
             </ul>
+            <div>
+                <Link href="/showcase" className="xp">
+                    Go to Showcase Page
+                </Link>
+            </div>
             <div>
                 <Link href="/" className="xp">
                     Go to Home Page

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import BookCard from '@/components/BookCard';
 import useUserId from '../../hooks/useUserId';
+import styles from "./page.module.css";
 
 export default function BookerPage() {
     const userId = useUserId(); // Get the user ID
@@ -168,16 +169,16 @@ export default function BookerPage() {
                         transition: 'transform 0.5s ease',
                         transform: formVisible ? 'translateX(0)' : 'scale(1.5)',
                         marginRight: formVisible ? '20px' : '0',
-                        width: '150px',
+                        width: '300px',
                     }}
                 >
                     <Image
-                        src="/images/booker.webp"
+                        src="/images/11.webp"
                         alt="Booker the Anthropomorphized Book"
-                        width={150}
-                        height={200}
+                        width={300}
+                        height={400}
                     />
-                    {!formVisible && <p style={{ textAlign: 'center', fontSize: '18px' }}>Click Me!</p>}
+                    {!formVisible && <p style={{ textAlign: 'center', fontSize: '18px' }}></p>}
                 </div>
 
                 {/* Form */}
@@ -261,8 +262,8 @@ export default function BookerPage() {
             </div>
 
             {/* Books List */}
-            <h2 style={{ marginTop: '30px' }}>Booker</h2>
-            <ul style={{ listStyleType: 'none', padding: 0 }}>
+            {/* <h2 style={{ marginTop: '30px' }}>An AI Bird that flies away and comes back with an answer or book</h2> */}
+            <ul style={{ listStyleType: 'none', padding: 0, marginTop: 117 }}>
                 {books.slice().reverse().map((book) => (
                     <BookCard
                         key={book._id}
@@ -275,7 +276,8 @@ export default function BookerPage() {
                     />
                 ))}
             </ul>
-            <div>
+            <div className='xpred'>
+                <p className='ii'>Aurius</p>
                 <Link href="/" className="xp">
                     Go to Home Page
                 </Link>

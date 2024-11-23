@@ -155,7 +155,7 @@ img {
       opacity: 1;
   }
 }
-img:hover {
+.only img:hover {
   transform: scale(1.1);
 }
 .booky{
@@ -165,4 +165,13 @@ img:hover {
 
 .red{
   color: red;
+}
+
+.my-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.peace{
+  text-align: center;
 }
