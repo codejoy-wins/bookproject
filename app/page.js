@@ -40,22 +40,7 @@ export default function Home() {
 
 
         <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://maxjann.com/projects"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/70.svg"
-              alt="Delta Halo TM"
-              width={20}
-              height={20}
-            />
-            projects
-          </a>
-          <a
+        <a
             href="https://maxjann.com/"
             target="_blank"
             rel="noopener noreferrer"
@@ -70,6 +55,15 @@ export default function Home() {
             />
             &nbsp; maxjann.com
           </a>
+          <a
+            className={styles.primary}
+            href="https://maxjann.com/projects"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            projects
+          </a>
+          
         </div>
         <div className="peace">
         <Link href="/showcase" className="xp">Review and Me</Link>
