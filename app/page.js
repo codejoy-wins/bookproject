@@ -107,7 +107,7 @@ export default function Home() {
           My AI Mewthree App
         </a>
         <a
-          href="https://https://github.com/codejoy-wins"
+          href="https://github.com/codejoy-wins"
           target="_blank"
           rel="noopener noreferrer"
         >
