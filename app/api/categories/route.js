@@ -1,5 +1,5 @@
 import dbConnect from '@/lib/dbConnect';
-import Category from '@/models/category';
+import Category from '@/models/Category';
 
 export async function POST(req) {
     try {
