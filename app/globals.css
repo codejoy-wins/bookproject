@@ -200,20 +200,19 @@ img {
   width: 100%;
   height: 100%;
   /* background-size: cover; */
-  background-size: auto 100%, auto 100%;
-  background-repeat: no-repeat, repeat;
-  background-position: left, right;
+  background-size: auto 100%, auto 100%, auto 100%;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-position: left, right, right;
   z-index: -1;
   /* border: 2px solid red; Temporary for debugging */
 }
 
 .desktop-bg {
-  background-image: url('/images/Awide.webp'), url('/images/1.webp');
+  background-image: url('/images/Awide.webp'), url('/images/1.webp'), url('/images/Auriel.webp');
 }
 
 .mobile-bg {
-  background-image: url('/images/Avert.webp');
-  /* background-image: url('/images/Awide.webp'); */
+  background-image: url('/images/Avert.webp'), url('/images/Auriel.webp');
 
 }
 .category {
