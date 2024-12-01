@@ -1,120 +1,122 @@
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./page.module.css";
+'use client'; // Ensure this page supports client-side interactions
+import { useState, useEffect } from 'react';
+import Background from '@/components/Background';
+import CategoryForm from '@/components/CategoryForm';
+import Image from 'next/image';
+import Link from 'next/link';
+
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        {/* <Image
-          className={styles.logo}
-          src="14.svg"
-          alt="My logo"
-          // width={360}
-          // height={72}
-          width={720}
-          height={144}
-          priority
-        /> */}
-        
-        {/* <Link href="/formal" className="xp">Old Book Review App</Link> */}
+    const [categories, setCategories] = useState([]); // State to store categories
 
-        {/* <div className="peace">
-        <Link href="/showcase" className="xp">Review and Me</Link>
-        </div>
+    // Fetch categories from the backend
+    // useEffect(() => {
+    //     const fetchCategories = async () => {
+    //         try {
+    //             const response = await fetch('/api/categories'); // Replace with your API endpoint
+    //             if (response.ok) {
+    //                 const data = await response.json();
+    //                 setCategories(data); // Assume data is an array of categories
+    //             } else {
+    //                 console.error('Failed to fetch categories');
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching categories:', error);
+    //         }
+    //     };
 
-        <img className="pic" src="/images/17.jpg" alt="booker"/> */}
+    //     fetchCategories();
+    // }, []);
 
-        <div>
-          <p>&copy; Jann Software</p>
-        </div>
-        <div style={{ maxWidth: '520px', margin: '0 auto' }}>
-            <Image
-                src="/images/1.webp" // Path to your image in the public folder
+    // Handle adding a new category
+    const handleCategoryCreated = (newCategory) => {
+        setCategories((prevCategories) => [...prevCategories, newCategory]);
+    };
+
+    return (
+        <>
+            <Background />
+            {/* <Image
+                src="/images/Awide.webp" // Path to your image in the public folder
                 alt="Booker"
                 width={500} // Native width of the image
                 height={500} // Native height of the image (adjust as per actual dimensions)
                 style={{ maxWidth: '100%', height: 'auto' }}
-            />
-        </div>
+            /> */}
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    padding: '20px',
+                    gap: '20px',
+                    color: 'white',
+                    marginTop: '300px',
+                }}
+            >
+                <h1
+                    style={{
+                        textAlign: 'center',
+                        fontSize: '2rem',
+                        fontWeight: 'bold',
+                    }}
+                >
+                    <Link href="/showcase" className="xyp">Review and Me</Link>
+                </h1>
 
+                {/* Display Categories */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {categories.map((category) => (
+                        <Category key={category._id} title={category.name} />
+                    ))}
 
-        <div className={styles.ctas}>
-        <a
-            href="https://maxjann.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            <Image
-              className={styles.logo}
-              src="/70.svg"
-              alt="Delta Halo TM"
-              width={20}
-              height={20}
-            />
-            &nbsp; maxjann.com
-          </a>
-          <a
-            className={styles.primary}
-            href="https://maxjann.com/projects"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            projects
-          </a>
-          
-        </div>
-        <div className="peace">
-        <Link href="/showcase" className="xp">Review and Me</Link>
-        </div>
+                    {/* Special "Create Your Own" row */}
+                    <Category title="Create Your Own" isPlus={true} />
+                </div>
 
-        <img className="pic" src="/images/17.jpg" alt="booker"/>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://maxjann.com/resume"
-          target="_blank"
-          rel="noopener noreferrer"
+                {/* Category Form */}
+                <CategoryForm onCategoryCreated={handleCategoryCreated} />
+            </div>
+                    {/* Footer */}
+                    <footer
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    width: '100%',
+                    textAlign: 'center',
+                    padding: '10px 0',
+                    background: 'rgba(0, 0, 0, 0.71)',
+                    color: 'white',
+                }}
+            >
+                <p style={{ margin: 0 }}>
+                    © {new Date().getFullYear()} 
+                    <Link href="/old" className="xpert">Jann Software</Link>
+
+                </p>
+            </footer>
+        </>
+    );
+}
+
+// Individual category row
+function Category({ title, isPlus }) {
+    return (
+        <div
+            // style={{
+            //     display: 'flex',
+            //     alignItems: 'center',
+            //     justifyContent: 'space-between',
+            //     background: 'rgba(0, 0, 0, 0.5)',
+            //     borderRadius: '10px',
+            //     padding: '10px 20px',
+            //     fontSize: '1.5rem',
+            //     fontWeight: '500',
+            //     cursor: 'pointer',
+            // }}
+            className='category'
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Resume
-        </a>
-        <a
-          href="https://maxjann.com/mewthree"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          My AI Mewthree App
-        </a>
-        <a
-          href="https://github.com/codejoy-wins"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to my github →
-        </a>
-      </footer>
-    </div>
-  );
+            <span>{title}</span>
+            {isPlus && <span style={{ fontSize: '2rem', fontWeight: 'bold', color: 'lime' }}>+</span>}
+        </div>
+    );
 }

@@ -168,33 +168,45 @@ export default function BookerPage() {
                         cursor: 'pointer',
                         transition: 'transform 0.5s ease',
                         transform: formVisible ? 'translateX(0)' : 'scale(1.5)',
-                        marginRight: formVisible ? '20px' : '0',
+                        // position: formVisible ? 'absolulte' : 'absolute',
                         width: '300px',
                     }}
                 >
                     <Image
                         src="/images/11.webp"
-                        alt="Booker the Anthropomorphized Book"
+                        alt="BookerBird"
                         width={300}
                         height={400}
                     />
-                    {!formVisible && <p style={{ textAlign: 'center', fontSize: '18px' }}></p>}
+                    {!formVisible && <p style={{ textAlign: 'center', fontSize: '18px' }}>Click to Fly</p>}
                 </div>
 
                 {/* Form */}
                 {formVisible && (
                     <form
                         onSubmit={handleSubmit}
-                        style={{
-                            background: '#fff',
-                            padding: '20px',
-                            borderRadius: '8px',
-                            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                            maxWidth: '400px',
-                            marginLeft: '20px',
-                            color: 'navy',
-                            width: '100%',
-                        }}
+                        className={`form ${formVisible ? 'visible' : ''}`}
+                        // style={{
+                        //     background: '#fff',
+                        //     padding: '20px',
+                        //     borderRadius: '8px',
+                        //     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        //     maxWidth: '400px',
+                        //     marginLeft: '20px',
+                        //     color: 'navy',
+                        //     width: '100%',
+                        // }}
+                        // style={{
+                        //     background: '#fff',
+                        //     padding: '20px',
+                        //     borderRadius: '8px',
+                        //     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                        //     maxWidth: '400px',
+                        //     marginLeft: window.innerWidth > 768 ? '20px' : '0', // Space on desktop
+                        //     marginTop: window.innerWidth <= 768 ? '20px' : '0', // Space on mobile
+                        //     color: 'navy',
+                        //     width: '100%',
+                        // }}
                     >
                         <div>
                             <label htmlFor="title">Title:</label>
@@ -220,16 +232,7 @@ export default function BookerPage() {
                                 style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
                             />
                         </div>
-                        <div>
-                            <label htmlFor="review">Review:</label>
-                            <textarea
-                                id="review"
-                                name="review"
-                                value={formData.review}
-                                onChange={handleChange}
-                                style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
-                            ></textarea>
-                        </div>
+                        
                         <div>
                             <label htmlFor="rating">Rating (1-5):</label>
                             <input
@@ -242,6 +245,16 @@ export default function BookerPage() {
                                 max="5"
                                 style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
                             />
+                        </div>
+                        <div>
+                            <label htmlFor="review">Review:</label>
+                            <textarea
+                                id="review"
+                                name="review"
+                                value={formData.review}
+                                onChange={handleChange}
+                                style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+                            ></textarea>
                         </div>
                         <button
                             type="submit"
@@ -277,9 +290,9 @@ export default function BookerPage() {
                 ))}
             </ul>
             <div className='xpred'>
-                <p className='ii'>Aurius</p>
+                {/* <p className='ii'>Aurius</p> */}
                 <Link href="/" className="xp">
-                    Go to Home Page
+                    Come to Roost
                 </Link>
             </div>
         </main>

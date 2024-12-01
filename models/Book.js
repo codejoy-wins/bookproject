@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Category from './Category';
 
 const BookSchema = new mongoose.Schema({
     title: {
@@ -31,6 +32,7 @@ const BookSchema = new mongoose.Schema({
         required: true,
         default: null,
     },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' }
 });
 
 // Export the model if it exists, or create it if it doesn’t
