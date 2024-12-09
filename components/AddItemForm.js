@@ -76,6 +76,8 @@ const styles = {
         border: '1px solid #ccc',
         fontSize: '0.9rem',
         minWidth: '120px',
+        backgroundColor: 'rgba(0, 123, 255, 0.3)', // Change pink to transparent blue
+
     },
     saveButton: {
         padding: '6px',
@@ -87,7 +89,7 @@ const styles = {
     },
     addButton: {
         padding: '8px',
-        backgroundColor: 'rgba(0, 123, 255, 0.3)', // Transparent blue
+        backgroundColor: 'rgba(0, 123, 255, 0.5)', // Transparent blue
         color: 'white',
         border: 'none',
         borderRadius: '50%',

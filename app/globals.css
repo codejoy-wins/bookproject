@@ -78,8 +78,8 @@ a {
 
 /* Form Styling */
 form {
-  background: #e1c2c2;
-  padding: 20px;
+  /* background: #1b181862; */
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 400px;
@@ -291,4 +291,7 @@ img {
     top: 40px;
     right: 20px; /* Ensure it doesn't offset horizontally */
 }
+}
+input::placeholder {
+  color: rgba(246, 221, 221, 0.7);
 }

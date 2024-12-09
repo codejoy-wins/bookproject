@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const AddCategoryForm = ({ onAdd }) => {
+    const [isEditing, setIsEditing] = useState(false); // Whether the form is visible
     const [categoryName, setCategoryName] = useState('');
 
     const handleSubmit = async (e) => {
@@ -19,39 +20,50 @@ const AddCategoryForm = ({ onAdd }) => {
             }
 
             const newCategory = await res.json();
-            onAdd(newCategory);
+            onAdd(newCategory); // Refresh categories
             setCategoryName('');
+            setIsEditing(false); // Hide the form again
         } catch (error) {
             console.error('Error adding category:', error.message);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} style={styles.form}>
-            <input
-                type="text"
-                placeholder="New category name"
-                value={categoryName}
-                onChange={(e) => setCategoryName(e.target.value)}
-                style={styles.input}
-            />
-            <button type="submit" style={styles.button}>
-                + Create New Category
-            </button>
-        </form>
+        <div style={styles.container}>
+            {isEditing ? (
+                <form onSubmit={handleSubmit} style={styles.form}>
+                    <input
+                        type="text"
+                        placeholder="New category name"
+                        value={categoryName}
+                        onChange={(e) => setCategoryName(e.target.value)}
+                        style={styles.input}
+                    />
+                    <button type="submit" style={styles.saveButton}>
+                        ✓
+                    </button>
+                </form>
+            ) : (
+                <button onClick={() => setIsEditing(true)} style={styles.addButton}>
+                    + Create New Category
+                </button>
+            )}
+        </div>
     );
 };
 
 const styles = {
-    form: {
+    container: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start', // Align left
         alignItems: 'center',
         gap: '10px',
-        padding: '10px',
-        backgroundColor: 'rgba(34, 139, 34, 0.25)', // Match the green style
-        borderRadius: '5px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+        marginTop: '20px',
+    },
+    form: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '5px',
     },
     input: {
         padding: '8px',
@@ -59,17 +71,27 @@ const styles = {
         border: '1px solid #ccc',
         fontSize: '1rem',
         minWidth: '200px',
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: 'rgba(0, 123, 255, 0.3)', // Change pink to transparent blue
         color: 'white',
     },
-    button: {
-        padding: '8px 16px',
-        fontSize: '1rem',
-        backgroundColor: 'rgba(0, 123, 255, 0.8)',
+    saveButton: {
+        padding: '8px 12px',
+        backgroundColor: 'rgba(34, 139, 34, 0.5)', // Pretty green
         color: 'white',
         border: 'none',
         borderRadius: '5px',
         cursor: 'pointer',
+    },
+    addButton: {
+        padding: '10px 20px',
+        backgroundColor: 'rgba(0, 123, 255, 0.3)', // Transparent blue
+        color: 'white',
+        border: 'none',
+        borderRadius: '5px',
+        fontSize: '1rem',
+        cursor: 'pointer',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Subtle shadow
+        transition: 'background-color 0.3s ease', // Smooth hover effect
     },
 };
 

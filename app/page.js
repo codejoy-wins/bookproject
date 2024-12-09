@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Background from '@/components/Background';
 import AddCategoryForm from '@/components/AddCategoryForm';
 import AddItemForm from '@/components/AddItemForm';
+import Link from 'next/link';
 
 export default function HomePage() {
     const [categories, setCategories] = useState([]);
@@ -66,6 +67,24 @@ export default function HomePage() {
                     <AddCategoryForm onAdd={refreshCategories} />
                 </div>
             </div>
+            {/* Footer */}
+            <footer
+                style={{
+                    position: 'absolute',
+                    bottom: 0,
+                    width: '100%',
+                    textAlign: 'center',
+                    padding: '10px 0',
+                    background: 'rgba(0, 0, 0, 0.71)',
+                    color: 'white',
+                }}
+            >
+                <p style={{ margin: 0 }}>
+                    © {new Date().getFullYear()} 
+                    <Link href="/old" className="xpert">Jann Software</Link>
+
+                </p>
+            </footer>
         </div>
     );
 }
@@ -74,7 +93,7 @@ const styles = {
     heading: {
         textAlign: 'center',
         marginTop: '20px',
-        color: '#fff',
+        color: 'azure',
         fontSize: '2rem',
         textShadow: '0px 2px 5px rgba(0, 0, 0, 0.6)',
     },
@@ -83,7 +102,7 @@ const styles = {
         textAlign: 'center',
     },
     categoryContainer: {
-        marginTop: '117px', // Move down from the top of the page
+        marginTop: '217px', // Move down from the top of the page
         marginLeft: '20px', // Optional: Add left spacing if needed
         display: 'flex',
         flexDirection: 'column',
@@ -94,7 +113,7 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
-        backgroundColor: 'rgba(34, 139, 134, 0.25)',
+        backgroundColor: 'rgba(34, 139, 134, 0.42)',
         padding: '10px',
         borderRadius: '5px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
@@ -112,7 +131,7 @@ const styles = {
     },
     itemBox: {
         padding: '8px 12px',
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         color: '#fff',
         borderRadius: '5px',
         textAlign: 'center',
