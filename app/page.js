@@ -1,122 +1,140 @@
-'use client'; // Ensure this page supports client-side interactions
+'use client';
+
 import { useState, useEffect } from 'react';
 import Background from '@/components/Background';
-import CategoryForm from '@/components/CategoryForm';
-import Image from 'next/image';
-import Link from 'next/link';
+import AddCategoryForm from '@/components/AddCategoryForm';
+import AddItemForm from '@/components/AddItemForm';
 
+export default function HomePage() {
+    const [categories, setCategories] = useState([]);
+    const [error, setError] = useState(null);
 
-export default function Home() {
-    const [categories, setCategories] = useState([]); // State to store categories
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch('/api/categories');
+                if (!res.ok) throw new Error('Failed to fetch categories');
+                const data = await res.json();
+                setCategories(data);
+            } catch (err) {
+                console.error('Error fetching categories:', err.message);
+                setError(err.message);
+            }
+        };
+        fetchCategories();
+    }, []);
 
-    // Fetch categories from the backend
-    // useEffect(() => {
-    //     const fetchCategories = async () => {
-    //         try {
-    //             const response = await fetch('/api/categories'); // Replace with your API endpoint
-    //             if (response.ok) {
-    //                 const data = await response.json();
-    //                 setCategories(data); // Assume data is an array of categories
-    //             } else {
-    //                 console.error('Failed to fetch categories');
-    //             }
-    //         } catch (error) {
-    //             console.error('Error fetching categories:', error);
-    //         }
-    //     };
-
-    //     fetchCategories();
-    // }, []);
-
-    // Handle adding a new category
-    const handleCategoryCreated = (newCategory) => {
-        setCategories((prevCategories) => [...prevCategories, newCategory]);
+    const refreshCategories = async () => {
+        try {
+            const res = await fetch('/api/categories');
+            const data = await res.json();
+            setCategories(data);
+        } catch (err) {
+            console.error('Error refreshing categories:', err.message);
+            setError(err.message);
+        }
     };
 
     return (
-        <>
+        <div>
             <Background />
-            {/* <Image
-                src="/images/Awide.webp" // Path to your image in the public folder
-                alt="Booker"
-                width={500} // Native width of the image
-                height={500} // Native height of the image (adjust as per actual dimensions)
-                style={{ maxWidth: '100%', height: 'auto' }}
-            /> */}
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    padding: '20px',
-                    gap: '20px',
-                    color: 'white',
-                    marginTop: '300px',
-                }}
-            >
-                <h1
-                    style={{
-                        textAlign: 'center',
-                        fontSize: '2rem',
-                        fontWeight: 'bold',
-                    }}
-                >
-                    <Link href="/showcase" className="xyp">Review and Me</Link>
-                </h1>
-
-                {/* Display Categories */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                    {categories.map((category) => (
-                        <Category key={category._id} title={category.name} />
-                    ))}
-
-                    {/* Special "Create Your Own" row */}
-                    <Category title="Create Your Own" isPlus={true} />
+            <h1 style={styles.heading}>Review and Me</h1>
+            {error && <p style={styles.error}>Error: {error}</p>}
+            <div style={styles.categoryContainer}>
+                {categories.map((category) => (
+                    <div key={category._id} style={styles.categoryRow}>
+                        <span style={styles.categoryTitle}>{category.name}:</span>
+                        <div style={styles.itemsContainer}>
+                            {category.items && category.items.length > 0 ? (
+                                category.items.map((item) => (
+                                    <div key={item._id} style={styles.itemBox}>
+                                        {item.name}
+                                    </div>
+                                ))
+                            ) : (
+                                <div style={styles.itemBox}>No items yet</div>
+                            )}
+                            <AddItemForm
+                                categoryId={category._id}
+                                onAdd={refreshCategories}
+                                buttonStyle={styles.addButton}
+                            />
+                        </div>
+                    </div>
+                ))}
+                <div style={styles.createCategoryRow}>
+                    <AddCategoryForm onAdd={refreshCategories} />
                 </div>
-
-                {/* Category Form */}
-                <CategoryForm onCategoryCreated={handleCategoryCreated} />
             </div>
-                    {/* Footer */}
-                    <footer
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    width: '100%',
-                    textAlign: 'center',
-                    padding: '10px 0',
-                    background: 'rgba(0, 0, 0, 0.71)',
-                    color: 'white',
-                }}
-            >
-                <p style={{ margin: 0 }}>
-                    © {new Date().getFullYear()} 
-                    <Link href="/old" className="xpert">Jann Software</Link>
-
-                </p>
-            </footer>
-        </>
-    );
-}
-
-// Individual category row
-function Category({ title, isPlus }) {
-    return (
-        <div
-            // style={{
-            //     display: 'flex',
-            //     alignItems: 'center',
-            //     justifyContent: 'space-between',
-            //     background: 'rgba(0, 0, 0, 0.5)',
-            //     borderRadius: '10px',
-            //     padding: '10px 20px',
-            //     fontSize: '1.5rem',
-            //     fontWeight: '500',
-            //     cursor: 'pointer',
-            // }}
-            className='category'
-        >
-            <span>{title}</span>
-            {isPlus && <span style={{ fontSize: '2rem', fontWeight: 'bold', color: 'lime' }}>+</span>}
         </div>
     );
 }
+
+const styles = {
+    heading: {
+        textAlign: 'center',
+        marginTop: '20px',
+        color: '#fff',
+        fontSize: '2rem',
+        textShadow: '0px 2px 5px rgba(0, 0, 0, 0.6)',
+    },
+    error: {
+        color: 'red',
+        textAlign: 'center',
+    },
+    categoryContainer: {
+        marginTop: '117px', // Move down from the top of the page
+        marginLeft: '20px', // Optional: Add left spacing if needed
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+    },
+    
+    categoryRow: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px',
+        backgroundColor: 'rgba(34, 139, 134, 0.25)',
+        padding: '10px',
+        borderRadius: '5px',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+    },
+    categoryTitle: {
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    itemsContainer: {
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '10px',
+        flex: 1,
+    },
+    itemBox: {
+        padding: '8px 12px',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        color: '#fff',
+        borderRadius: '5px',
+        textAlign: 'center',
+        minWidth: '80px',
+    },
+    addButton: {
+        padding: '8px',
+        backgroundColor: '#28a745',
+        color: 'white',
+        border: 'none',
+        borderRadius: '50%',
+        cursor: 'pointer',
+        fontSize: '1.2rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    createCategoryRow: {
+        marginTop: '20px',
+        display: 'flex',
+        justifyContent: 'flex-start', // Align to the left
+        alignItems: 'center',
+    },
+    
+};

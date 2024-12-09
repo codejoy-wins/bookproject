@@ -1,18 +1,38 @@
 import dbConnect from '@/lib/dbConnect';
 import Category from '@/models/Category';
+import { NextResponse } from 'next/server';
+import Item from '@/models/Item';
 
-export async function POST(req) {
+// GET: Fetch all categories
+export async function GET() {
     try {
         await dbConnect();
-        const body = await req.json();
-
-        const category = await Category.create({
-            name: body.name,
-            createdBy: body.createdBy,
-        });
-
-        return new Response(JSON.stringify(category), { status: 201 });
+        const categories = await Category.find().populate('items'); // Fetch categories with items
+        console.log('Fetched categories:', categories);
+        return NextResponse.json(categories || []);
     } catch (error) {
-        return new Response(JSON.stringify({ error: error.message }), { status: 400 });
+        console.error('Error fetching categories:', error.message);
+        return NextResponse.json({ error: 'Error fetching categories' }, { status: 500 });
+    }
+}
+
+// POST: Add a new category
+export async function POST(request) {
+    try {
+        await dbConnect();
+        const { name } = await request.json(); // Extract category name from request body
+
+        if (!name) {
+            throw new Error('Name is required to create a category');
+        }
+
+        const newCategory = new Category({ name, items: [] }); // Create new category with empty items array
+        await newCategory.save();
+
+        console.log('Created new category:', newCategory);
+        return NextResponse.json(newCategory, { status: 201 }); // Return the created category
+    } catch (error) {
+        console.error('Error creating category:', error.message);
+        return NextResponse.json({ error: 'Error creating category' }, { status: 500 });
     }
 }
