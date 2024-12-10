@@ -39,7 +39,8 @@ export default function HomePage() {
     return (
         <div>
             <Background />
-            <h1 style={styles.heading}>Review and Me</h1>
+            <a href='https://www.maxjann.com'><h1 style={styles.heading}>Review and Me</h1></a>
+            
             {error && <p style={styles.error}>Error: {error}</p>}
             <div style={styles.categoryContainer}>
                 {categories.map((category) => (
@@ -67,24 +68,6 @@ export default function HomePage() {
                     <AddCategoryForm onAdd={refreshCategories} />
                 </div>
             </div>
-            {/* Footer */}
-            <footer
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    width: '100%',
-                    textAlign: 'center',
-                    padding: '10px 0',
-                    background: 'rgba(0, 0, 0, 0.71)',
-                    color: 'white',
-                }}
-            >
-                <p style={{ margin: 0 }}>
-                    © {new Date().getFullYear()} 
-                    <Link href="/old" className="xpert">Jann Software</Link>
-
-                </p>
-            </footer>
         </div>
     );
 }
