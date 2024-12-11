@@ -42,9 +42,8 @@ export default function HomePage() {
         <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         </Head>
-        
+        <Background />
         <div>
-            <Background />
             <a href='https://www.maxjann.com'><h1 style={styles.heading}>Review and Me</h1></a>
             
             {error && <p style={styles.error}>Error: {error}</p>}
