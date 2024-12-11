@@ -84,7 +84,7 @@ const styles = {
     },
     addButton: {
         padding: '10px 20px',
-        backgroundColor: 'rgba(0, 123, 255, 0.3)', // Transparent blue
+        backgroundColor: 'rgba(0, 123, 255, 0.35)', // Transparent blue
         color: 'white',
         border: 'none',
         borderRadius: '5px',
