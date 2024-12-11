@@ -5,6 +5,7 @@ import Background from '@/components/Background';
 import AddCategoryForm from '@/components/AddCategoryForm';
 import AddItemForm from '@/components/AddItemForm';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function HomePage() {
     const [categories, setCategories] = useState([]);
@@ -37,6 +38,11 @@ export default function HomePage() {
     };
 
     return (
+        <>
+        <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        </Head>
+        
         <div>
             <Background />
             <a href='https://www.maxjann.com'><h1 style={styles.heading}>Review and Me</h1></a>
@@ -69,6 +75,7 @@ export default function HomePage() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 

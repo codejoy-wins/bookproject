@@ -54,12 +54,12 @@ const AddItemForm = ({ categoryId, onAdd }) => {
 
 const styles = {
     itemBox: {
-        padding: '8px 12px',
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        padding: '2px 2px',
+        // backgroundColor: 'rgba(0, 25, 222, 0.4)',
         color: '#fff',
-        borderRadius: '5px',
+        // borderRadius: '54px',
         textAlign: 'center',
-        minWidth: '80px',
+        minWidth: '50px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -69,6 +69,8 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         gap: '5px',
+        backgroundColor: 'rgba(0, 255, 117, 0.3)', // Change pink to transparent blue
+
     },
     input: {
         padding: '6px',
@@ -76,7 +78,7 @@ const styles = {
         border: '1px solid #ccc',
         fontSize: '0.9rem',
         minWidth: '120px',
-        backgroundColor: 'rgba(0, 123, 255, 0.3)', // Change pink to transparent blue
+        backgroundColor: 'rgba(0, 123, 255, 0.4)', // Change pink to transparent green
 
     },
     saveButton: {
@@ -88,11 +90,12 @@ const styles = {
         cursor: 'pointer',
     },
     addButton: {
-        padding: '8px',
-        backgroundColor: 'rgba(0, 123, 255, 0.5)', // Transparent blue
+        paddingLeft: '11px',
+        paddingRight:  '11px',
+        backgroundColor: 'rgba(0, 117, 255, .5)', // Transparent blue
         color: 'white',
         border: 'none',
-        borderRadius: '50%',
+        borderRadius: '100%',
         fontSize: '1.5rem',
         cursor: 'pointer',
         display: 'flex',
