@@ -55,7 +55,9 @@ export default function HomePage() {
                             {category.items && category.items.length > 0 ? (
                                 category.items.map((item) => (
                                     <div key={item._id} style={styles.itemBox}>
+                                        <Link key={item._id} href={`/items/${item._id}`}>
                                         {item.name}
+                                        </Link>
                                     </div>
                                 ))
                             ) : (
