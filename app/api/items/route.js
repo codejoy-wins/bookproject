@@ -3,6 +3,20 @@ import Item from '@/models/Item';
 import Category from '@/models/Category';
 import { NextResponse } from 'next/server';
 
+// GET: Fetch all items try by codejoy
+export async function GET() {
+    try {
+        await dbConnect();
+        const items = await Item.find(); // Fetch items
+        console.log('Fetched items:', items);
+        return NextResponse.json(items || []);
+    } catch (error) {
+        console.error('Error fetching items:', error.message);
+        return NextResponse.json({ error: 'Error fetching items' }, { status: 500 });
+    }
+}
+
+
 // POST: Add a new item to a category
 export async function POST(request) {
     try {
