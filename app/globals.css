@@ -299,3 +299,36 @@ input::placeholder {
 .spec{
   background-color: purple;
 }
+
+.pikachu{
+  color: pink;
+  padding: 40px;
+  background-color: rgba(18, 28, 71, 0.506);
+  display: inline-block;
+}
+
+.pikachu:hover{
+  background-color: rgba(42, 160, 50, 0.551);
+}
+.review{
+  background-color: rgba(0, 0, 255, 0.365);
+  padding: 57px;
+  text-align: center;
+  border-radius: 1vw;
+  display: inline-block;
+  margin-left: 5vw;
+  margin-top: 15vw;
+  min-width: 50%;
+}
+.review p{
+  padding: 12px;
+}
+.charizard{
+  background-color: rgba(0, 0, 0, 0.692);
+  color: wheat;
+  padding: 5px;
+  border-radius: 1vw;
+  display: inline-block;
+  margin: 5px;
+}
+

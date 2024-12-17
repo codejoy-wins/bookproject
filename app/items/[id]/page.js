@@ -1,4 +1,6 @@
 import Background from '@/components/Background';
+import CategoryMagic from '@/components/CategoryMagic';
+import Link from 'next/link';
 
 export default async function ItemPage({ params }) {
   const { id } = await params;
@@ -36,10 +38,25 @@ export default async function ItemPage({ params }) {
     <>
       <Background />
       <div>
-        <h1>{item.name} Details</h1>
-        <p><strong>Name:</strong> {item.name}</p>
-        <p><strong>Category:</strong> {item.category}</p>
+        <h1>{item.name}</h1>
+        <Link key={item._id} href={`/`}>
+            <div className='pikachu'>
+            Return To Roost
+            </div>
+        </Link>
+        <div className='review'>
+          <p>
+            This is where the item comments / review will go for {item.name}
+          </p>
+          <p>It should have a form to let you post comments</p>
+          <p>It should also have item specific pictures, and the background should probably change as well depending on the category</p>
+        </div>
+        
       </div>
+      <CategoryMagic elam = {item.category} />
+        <p className='charizard'><strong>Name:</strong> {item.name}</p>
+        <p className='charizard'><strong>Item ID:</strong> {item._id}</p>
+        <p className='charizard'><strong>Category ID:</strong> {item.category}</p>
     </>
   );
 }
