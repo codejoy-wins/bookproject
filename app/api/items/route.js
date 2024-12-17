@@ -28,7 +28,8 @@ export async function POST(request) {
         }
 
         // Create the new item
-        const newItem = new Item({ name, category: categoryId });
+        // const newItem = new Item({ name, category: categoryId });
+        const newItem = await Item.create({ name, category: categoryId, comments: [] });
         await newItem.save();
 
         // Add the item to the corresponding category
