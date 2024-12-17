@@ -25,7 +25,6 @@ export default async function ItemPage({ params }) {
   }
 
   // Handle item not found or fetch failure
-  // probably need to populate the comments from the items, and also for the existing data to be deleted and restarted with empty arrays of comments.
   if (!item) {
     return (
       <div>
@@ -34,20 +33,12 @@ export default async function ItemPage({ params }) {
       </div>
     );
   }
-  let itemComments = ["no comments"];
-  let mainComment = "comments are under construction by codejoy";
-  try{
-    if(item.comments){
-      itemComments = item.comments;
-      mainComment = itemComments[0].text;
-    }else{
-      console.log("hi");
-    }
+  let itemComments = null;
+  let mainComment = null;
+  if(item.comments){
+    itemComments = item.comments;
+    mainComment = item.comments[0].text;
   }
-  catch{
-    console.log("tried and failed");
-  }
-  
 
   // Render item details
   return (
@@ -62,7 +53,9 @@ export default async function ItemPage({ params }) {
         </Link>
         <div className='review'>
           <h1>{mainComment}</h1>
-          < CommentForm />
+          < CommentForm itemId={id}/>
+          {/* <CommentForm itemId={id} onCommentAdded={handleCommentAdded} /> */}
+
           <p>
             This is where the item comments / review will go for {item.name}
           </p>
