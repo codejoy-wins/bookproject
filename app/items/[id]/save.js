@@ -53,9 +53,7 @@ export default async function ItemPage({ params }) {
         </Link>
         <div className='review'>
           <h1>{mainComment}</h1>
-          < CommentForm itemId={id}/>
-          {/* <CommentForm itemId={id} onCommentAdded={handleCommentAdded} /> */}
-
+          < CommentForm />
           <p>
             This is where the item comments / review will go for {item.name}
           </p>
