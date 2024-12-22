@@ -15,11 +15,11 @@ export default function HomePage() {
         const fetchCategories = async () => {
             try {
                 const res = await fetch('/api/categories');
-                if (!res.ok) throw new Error('Failed to fetch categories');
+                if (!res.ok) throw new Error('Failed to fetch categories, codejoy failed');
                 const data = await res.json();
                 setCategories(data);
             } catch (err) {
-                console.error('Error fetching categories:', err.message);
+                console.error('Error fetching categories, sorry:', err.message);
                 setError(err.message);
             }
         };

@@ -11,8 +11,8 @@ export async function GET() {
         console.log('Fetched categories:', categories);
         return NextResponse.json(categories || []);
     } catch (error) {
-        console.error('Error fetching categories:', error.message);
-        return NextResponse.json({ error: 'Error fetching categories' }, { status: 500 });
+        console.error('Error fetching categories on the serverside:', error.message);
+        return NextResponse.json({ error: 'Error fetching categories 2' }, { status: 500 });
     }
 }
 

@@ -4,7 +4,7 @@ import CommentForm from '@/components/CommentForm';
 import Link from 'next/link';
 
 export default async function ItemPage({ params }) {
-  const { id } = await params;
+  const { id } = params;
 
   let item = null; // Initialize item data
 
