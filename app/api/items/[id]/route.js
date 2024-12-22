@@ -3,6 +3,8 @@ import Item from '@/models/Item';
 import { ObjectId } from 'mongodb';
 import { NextResponse } from 'next/server';
 
+// this is the page that should fetch comments according to chatGPT
+
 export async function GET(request, { params }) {
   const { id } = params;
 
@@ -14,7 +16,9 @@ export async function GET(request, { params }) {
       return NextResponse.json({ success: false, message: 'Invalid ID format' }, { status: 400 });
     }
 
-    const item = await Item.findById(id);
+    // const item = await Item.findById(id);
+    const item = await Item.findById(id).populate('comments');
+
 
     if (!item) {
       return NextResponse.json({ success: false, message: 'Item not fucking found' }, { status: 404 });

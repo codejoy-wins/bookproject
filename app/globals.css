@@ -322,6 +322,7 @@ input::placeholder {
 }
 .review p{
   padding: 12px;
+  color: aliceblue;
 }
 .charizard{
   background-color: rgba(0, 0, 0, 0.692);
