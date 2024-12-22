@@ -54,9 +54,6 @@ export default async function ItemPage({ params }) {
           )}
 
           <CommentForm itemId={id} />
-          <p>
-            This is where the item comments / review will go for {item.name}
-          </p>
         </div>
       </div>
       <CategoryMagic elam={item.category} />
