@@ -332,4 +332,6 @@ input::placeholder {
   display: inline-block;
   margin: 5px;
 }
-
+.review h2{
+  color: wheat;
+}
