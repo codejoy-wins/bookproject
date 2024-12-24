@@ -9,7 +9,12 @@ export async function GET() {
         await dbConnect();
         const categories = await Category.find().populate('items'); // Fetch categories with items
         console.log('Fetched categories:', categories);
-        return NextResponse.json(categories || []);
+        // return NextResponse.json(categories || []);
+        return NextResponse.json(categories || [], {
+            headers: {
+                'Cache-Control': 'no-store', // Prevent caching
+            },
+        });
     } catch (error) {
         console.error('Error fetching categories on the serverside:', error.message);
         return NextResponse.json({ error: 'Error fetching categories 2' }, { status: 500 });
