@@ -27,7 +27,15 @@ export async function POST(request) {
       return NextResponse.json({ success: false, message: 'Item not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true, data: { comment, updatedItem } }, { status: 201 });
+    return NextResponse.json(
+      { success: true, data: { comment, updatedItem } },
+      { 
+        status: 201,
+        headers: {
+          'Cache-Control': 'no-store',
+        }
+      }
+    );
   } catch (error) {
     console.error('Error creating comment:', error.message);
     return NextResponse.json({ success: false, message: error.message }, { status: 500 });
