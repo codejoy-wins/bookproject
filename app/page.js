@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Background from '@/components/Background';
+import Nothing from '@/components/Nothing';
 import AddCategoryForm from '@/components/AddCategoryForm';
 import AddItemForm from '@/components/AddItemForm';
 import Link from 'next/link';
@@ -43,6 +44,7 @@ export default function HomePage() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         </Head>
         <Background />
+
         <div>
             <a href='https://www.maxjann.com'><h1 style={styles.heading}>Review and Me</h1></a>
             

@@ -1,4 +1,4 @@
-.background {
+.background2 {
     position: fixed;
     top: 0;
     left: 0;
@@ -9,13 +9,13 @@
     z-index: -1;
 }
 
-.desktop-bg {
+.desktop-bg2 {
     background-image: url('../public/images/cyberbiome.webp');
 }
 
-.mobile-bg {
+.mobile-bg2 {
     background-image: url('../public/images/cyberbiome.webp');
 }
-p .why{
-    color: blue;
+p .why2{
+    color:  coral;
 }
