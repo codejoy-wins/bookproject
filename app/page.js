@@ -11,6 +11,8 @@ import Head from 'next/head';
 export default function HomePage() {
     const [categories, setCategories] = useState([]);
     const [error, setError] = useState(null);
+    const [hoveredItem, setHoveredItem] = useState(null); // To track hovered item
+
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -56,11 +58,23 @@ export default function HomePage() {
                         <div style={styles.itemsContainer}>
                             {category.items && category.items.length > 0 ? (
                                 category.items.map((item) => (
-                                    <div key={item._id} style={styles.itemBox}>
-                                        <Link key={item._id} href={`/items/${item._id}`}>
-                                        {item.name}
-                                        </Link>
-                                    </div>
+                                    <div
+                                            key={item._id}
+                                            style={{
+                                                ...styles.itemBox,
+                                                backgroundColor:
+                                                    hoveredItem === item._id
+                                                        ? 'rgba(43, 207, 65, 0.9)' // Hover color
+                                                        : 'rgba(37, 170, 148, 0.5)', // Default color
+                                                        color: hoveredItem === item._id ? 'navy' : 'azure',
+                                            }}
+                                            onMouseEnter={() => setHoveredItem(item._id)}
+                                            onMouseLeave={() => setHoveredItem(null)}
+                                        >
+                                            <Link key={item._id} href={`/items/${item._id}`}>
+                                                {item.name}
+                                            </Link>
+                                        </div>
                                 ))
                             ) : (
                                 <div style={styles.itemBox}>No items yet</div>
@@ -106,7 +120,14 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
-        backgroundColor: 'rgba(34, 139, 134, 0.42)',
+        // backgroundColor: 'rgba(34, 139, 134, 0.42)',
+        // backgroundColor: 'rgba(233, 199, 86, 0.42)',
+        backgroundColor: 'rgba(10, 6, 49, 0.22)',
+        // border: '2px solid rgba(34, 139, 134, 0.42)',
+        // border: '2px solid rgba(233, 199, 86, 0.33)',
+
+
+
         padding: '10px',
         borderRadius: '5px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
@@ -116,20 +137,37 @@ const styles = {
         color: '#fff',
     },
     itemsContainer: {
+        
         display: 'flex',
         alignItems: 'center',
         flexWrap: 'wrap',
         gap: '10px',
         flex: 1,
     },
+    // itemBox: {
+    //     padding: '8px 12px',
+    //     // backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    //     backgroundColor: 'rgba(236, 157, 22, 0.4)',
+    //     color: '#fff',
+    //     borderRadius: '5px',
+    //     textAlign: 'center',
+    //     minWidth: '80px',
+    // },
     itemBox: {
-        padding: '8px 12px',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        // padding: '8px 12px',
+        padding: '12px 18px',
+
+        backgroundColor: 'rgb(0, 0, 0)',
         color: '#fff',
         borderRadius: '5px',
         textAlign: 'center',
         minWidth: '80px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s ease',
     },
+
+    
+    
     addButton: {
         padding: '8px',
         backgroundColor: '#28a745',

@@ -231,7 +231,9 @@ img {
 }
 
 .category:hover {
-  background: rgba(56, 139, 223, 0.5); /* Blue with 50% opacity */
+  /* background: rgba(56, 139, 223, 0.5); Blue with 50% opacity */
+  background: rgba(56, 139, 223, 0.1); /* Blue with 50% opacity */
+
 }
 .create-button:hover {
   /* transform: scale(1.1); */
@@ -336,5 +338,8 @@ input::placeholder {
   margin: 5px;
 }
 .review h2{
+  color: #f5deb3;
   color: wheat;
+  color: rgb(245,222,179,.8);
+  color: #f0ffff;
 }
