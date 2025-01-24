@@ -120,9 +120,12 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
+        maxWidth:'720px',
         // backgroundColor: 'rgba(34, 139, 134, 0.42)',
         // backgroundColor: 'rgba(233, 199, 86, 0.42)',
-        backgroundColor: 'rgba(10, 6, 49, 0.22)',
+        // backgroundColor: 'rgba(10, 6, 49, 0.6)',
+        backgroundColor: 'rgba(0, 0, 0, 0.42)',
+
         // border: '2px solid rgba(34, 139, 134, 0.42)',
         // border: '2px solid rgba(233, 199, 86, 0.33)',
 
