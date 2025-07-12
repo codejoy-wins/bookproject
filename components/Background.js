@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
+import styles from './Background.module.css';
+
 
 export default function Background() {
     const [isMobile, setIsMobile] = useState(false);
@@ -12,7 +14,7 @@ export default function Background() {
     }, []);
 
     return (
-        <div className={`background ${isMobile ? 'mobile-bg' : 'desktop-bg'}`}>
+        <div className={`${styles.background} ${isMobile ? styles['mobile-bg'] : styles['desktop-bg']}`}>
         </div>
     );
 }

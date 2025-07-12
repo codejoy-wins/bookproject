@@ -64,9 +64,9 @@ export default function HomePage() {
                                                 ...styles.itemBox,
                                                 backgroundColor:
                                                     hoveredItem === item._id
-                                                        ? 'rgba(43, 207, 65, 0.9)' // Hover color
-                                                        : 'rgba(37, 170, 148, 0.5)', // Default color
-                                                        color: hoveredItem === item._id ? 'navy' : 'azure',
+                                                        ? 'rgba(220, 220, 220, 0.9)' // Hover color
+                                                        : 'rgba(19, 28, 44, 0.5)', // Default color
+                                                        color: hoveredItem === item._id ? 'black' : 'azure',
                                             }}
                                             onMouseEnter={() => setHoveredItem(item._id)}
                                             onMouseLeave={() => setHoveredItem(null)}
